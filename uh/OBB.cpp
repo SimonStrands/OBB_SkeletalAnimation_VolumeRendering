@@ -1,9 +1,4 @@
 #include "OBB.h"
-#define PI 3.14159265359
-
-static float DToR(float degree){
-    return 2 * PI * (degree/360);
-}
 
 OBB::OBB(sf::Vector2f position, sf::Vector2f size, float rotation)
 {
@@ -61,7 +56,7 @@ void OBB::debugPoint(const Particle& tester, Particle& changer)
 
 sf::Vector2f OBB::getPosition() const
 {
-    return this->position;
+    return this->OrginalPosition;
 }
 
 void OBB::updateDebug()

@@ -12,6 +12,7 @@ public:
 	void update(float dt);
 	void draw(sf::RenderWindow& window);
 private:
+	std::map<uint16_t, Bone*> boneMap;
 	Bone m_skeleton;
 	Animation m_anime;
 };

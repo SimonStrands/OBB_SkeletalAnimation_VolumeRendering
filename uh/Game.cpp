@@ -32,6 +32,8 @@ bool Game::Update(float dt)
 	}
 	testOBB.updateDebug();
 
+	skeleton.update(dt);
+
 	return done;
 }
 

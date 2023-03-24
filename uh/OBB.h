@@ -2,6 +2,11 @@
 #include <SFML/Graphics.hpp>
 #include "Particle.h"//DEBUG
 
+#define PI 3.14159265359
+static float DToR(float degree){
+    return 2 * PI * (degree/360);
+}
+
 class OBB : public sf::Drawable{
 public:
 	OBB(sf::Vector2f position = sf::Vector2f(0,0), sf::Vector2f size = sf::Vector2f(10,10), float rotation = 0);
