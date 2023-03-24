@@ -14,7 +14,7 @@ private:
 	sf::RenderWindow win;
 	bool done;
 	std::vector<Particle> particles;
-	//OBBSkeleton skeleton;
+	OBBSkeleton skeleton;
 	Particle point;
 	OBB testOBB;
 public:
