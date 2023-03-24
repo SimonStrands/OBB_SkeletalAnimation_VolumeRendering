@@ -24,7 +24,8 @@ static void buildTestAnimation()
 	testAnimation.Times.push_back(0.f);
 	testAnimation.Times.push_back(1.f);
 	testAnimation.Times.push_back(2.f);
-	testAnimation.Times.push_back(5.f);
+	testAnimation.Times.push_back(4.f);
+	testAnimation.Times.push_back(6.f);
 	testAnimation.nrOfBones = 3;
 	std::map<uint16_t, float> temp;
 
@@ -46,5 +47,10 @@ static void buildTestAnimation()
 	temp[0] = 25;
 	temp[1] = 25;
 	temp[2] = 25;
+	testAnimation.transformations.push_back(temp);
+
+	temp[0] = 0;
+	temp[1] = 0;
+	temp[2] = 0;
 	testAnimation.transformations.push_back(temp);
 }
