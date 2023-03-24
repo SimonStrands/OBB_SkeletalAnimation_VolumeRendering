@@ -7,6 +7,11 @@ struct Transformation{
 	sf::Vector2f position;
 	float rotation;
 	//scale not needed;
+
+	Transformation():
+		position(0, 0),
+		rotation(0)
+	{}
 };
 
 class Animation{

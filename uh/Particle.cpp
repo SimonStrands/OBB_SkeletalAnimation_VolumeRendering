@@ -27,3 +27,9 @@ sf::Vector2f Particle::getOrginalPosition() const
 {
 	return m_orginalPosition;
 }
+
+void Particle::changeOriginalPosition(sf::Vector2f pos)
+{
+	m_orginalPosition = pos;
+	m_particle.setPosition(pos);
+}

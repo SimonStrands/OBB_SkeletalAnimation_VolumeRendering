@@ -23,6 +23,7 @@ Game::~Game()
 bool Game::Update(float dt)
 {
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
+		//point.changeOriginalPosition(sf::Vector2f(sf::Mouse::getPosition(win)));
 		testOBB.setPos(sf::Vector2f(sf::Mouse::getPosition(win)));
 	}
 	for(int i = 0; i < particles.size(); i++){
@@ -33,6 +34,7 @@ bool Game::Update(float dt)
 	testOBB.updateDebug();
 
 	skeleton.update(dt);
+	//skeleton.checkIfPointIsInSkeleton(point);
 
 	return done;
 }

@@ -30,12 +30,26 @@ void OBBSkeleton::update(float dt)
     std::map<uint16_t, Bone*>::iterator it;
     for (it = boneMap.begin(); it != boneMap.end(); it++)
     {
-        m_anime.getTransformationInterpolation(it->first, boneMap);
+        //very badly made but works for now (now goes trought every parent for every child (O^2))
+        Transformation temp = m_anime.getTransformationInterpolation(it->first, boneMap);
+        boneMap[it->first]->thisBone.setPos(temp.position);
+        boneMap[it->first]->thisBone.setRotation(temp.rotation);
     }
-    
 }
 
 void OBBSkeleton::draw(sf::RenderWindow& window)
 {
     m_skeleton.draw(window);
+}
+
+bool OBBSkeleton::checkIfPointIsInSkeleton(Particle particle)
+{
+    std::map<uint16_t, Bone*>::iterator it;
+    for (it = boneMap.begin(); it != boneMap.end(); it++)
+    {
+        if(it->second->thisBone.pointInside(particle.getPosition())){
+            std::cout << "a particle inside skeleton" << std::endl;
+        }
+    }
+    return false;
 }

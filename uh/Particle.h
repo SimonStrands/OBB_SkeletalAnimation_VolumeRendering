@@ -8,6 +8,8 @@ public:
 	void changePosition(sf::Vector2f pos);
 	sf::Vector2f getPosition() const;
 	sf::Vector2f getOrginalPosition() const;
+	//DEBUG
+	void changeOriginalPosition(sf::Vector2f pos);
 private:
 	sf::Vector2f m_orginalPosition;
 	sf::CircleShape m_particle;

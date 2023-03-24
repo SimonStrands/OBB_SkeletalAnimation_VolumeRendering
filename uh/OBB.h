@@ -1,11 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Particle.h"//DEBUG
+#include "RadiansAndDegrees.h"
+#include "Particle.h"
 
-#define PI 3.14159265359
-static float DToR(float degree){
-    return 2 * PI * (degree/360);
-}
 
 class OBB : public sf::Drawable{
 public:
@@ -16,10 +13,11 @@ public:
 	void rotate(float rot);
 	void setRotation(float rot);
 	bool pointInside(sf::Vector2f point);
-
-	//DEBUG
-	void debugPoint(const Particle& tester, Particle& changer);
 	sf::Vector2f getPosition() const;
+	
+	//DEBUG
+	void setColor(sf::Color color);
+	void debugPoint(const Particle& tester, Particle& changer);
 	void updateDebug();
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 private:
