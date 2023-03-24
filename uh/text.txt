@@ -1,6 +1,18 @@
 What is needed
--OBB
--Particle (Color?)
--A type of skeleton
+-OBB/ DONE
+-Particle (Color?)/ DONE
+-A type of skeleton/ DONE
 
 Details
+
+Meaning with program
+-Create particles in certain space
+-Create a skeleton with OBB colliders
+-OBB colliders can check collision with particles
+-Skeletal should move with animation
+-OBB with skeleton should be able to transform particles.
+ 
+ //Not done with this program
+ -Skeletal do not move with animation
+ -Particles do not transform with skeleton
+ -Axis on OBB is wrong
