@@ -1,0 +1,6 @@
+What is needed
+-OBB
+-Particle (Color?)
+-A type of skeleton
+
+Details
