@@ -7,7 +7,7 @@ Game::Game():
 {
 	done = false;
 	for(int i = 0; i < 30; i++){
-		particles.push_back(Particle(sf::Color(random::getRandomInt(10,255),random::getRandomInt(10,255),random::getRandomInt(10,255)), sf::Vector2f(random::getRandomInt(0,400) + 200, random::getRandomInt(0,200) + 200)));
+		particles.push_back(Particle(sf::Color(random::getRandomInt(10,255),random::getRandomInt(10,255),random::getRandomInt(10,255)), sf::Vector2f(random::getRandomFloat(0,400) + 200, random::getRandomFloat(0,200) + 200)));
 	}
 	buildTestAnimation();
 	buildTestSkeleton();
@@ -23,8 +23,8 @@ Game::~Game()
 bool Game::Update(float dt)
 {
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
-		//point.changeOriginalPosition(sf::Vector2f(sf::Mouse::getPosition(win)));
-		testOBB.setPos(sf::Vector2f(sf::Mouse::getPosition(win)));
+		point.changeOriginalPosition(sf::Vector2f(sf::Mouse::getPosition(win)));
+		//testOBB.setPos(sf::Vector2f(sf::Mouse::getPosition(win)));
 	}
 	for(int i = 0; i < particles.size(); i++){
 		if(testOBB.pointInside(particles[i].getOrginalPosition())){
@@ -34,7 +34,7 @@ bool Game::Update(float dt)
 	testOBB.updateDebug();
 
 	skeleton.update(dt);
-	//skeleton.checkIfPointIsInSkeleton(point);
+	skeleton.checkIfPointIsInSkeleton(point);
 
 	return done;
 }
@@ -64,7 +64,7 @@ void Game::HandleEvents()
 			done = true;
 		}
 		if(event.type == sf::Event::MouseWheelMoved){
-			testOBB.rotate(event.mouseWheel.delta);
+			testOBB.rotate((float)event.mouseWheel.delta);
 		}
 	}
 }
