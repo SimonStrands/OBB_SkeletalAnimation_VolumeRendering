@@ -18,6 +18,11 @@ void Particle::changePosition(sf::Vector2f pos)
 	m_particle.setPosition(pos);
 }
 
+void Particle::reset()
+{
+	m_particle.setPosition(getOrginalPosition());
+}
+
 sf::Vector2f Particle::getPosition() const
 {
 	return m_particle.getPosition();
