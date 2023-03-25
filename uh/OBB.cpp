@@ -54,8 +54,6 @@ bool OBB::pointInside(sf::Vector2f point)
 
 void OBB::debugPoint(const Particle& tester, Particle& changer)
 {
-    sf::Vector2f offset = sf::Vector2f(position.x + size.x / 2, position.y);
-
     sf::Vector2f lPos = tester.getOrginalPosition() - position;
     float nXPos = lPos.x * cos(DToR(rotation)) - lPos.y * sin(DToR(rotation));
     float nYPos = lPos.x * sin(DToR(rotation)) + lPos.y * cos(DToR(rotation));
