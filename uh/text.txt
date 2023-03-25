@@ -13,6 +13,7 @@ Meaning with program
 -OBB with skeleton should be able to transform particles.
  
  //Not done with this program
- -Skeletal do not move with animation
+ -Skeletal do not move with animation //Done
+ -Axis on OBB is wrong //Done
  -Particles do not transform with skeleton
- -Axis on OBB is wrong
+
