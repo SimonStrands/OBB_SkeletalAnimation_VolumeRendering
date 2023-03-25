@@ -11,7 +11,7 @@ OBB::OBB(sf::Vector2f position, sf::Vector2f size, float rotation)
     this->OrginalPosition = position;
     this->rotation = rotation;
     this->size = size;
-    this->DEBUGSHAPE.setOrigin(size.x/2, size.y/2);
+    this->DEBUGSHAPE.setOrigin(0.f, size.y / 2);//size.x/2, size.y/2);
 }
 
 void OBB::init(sf::Vector2f position, sf::Vector2f size, float rotation)
@@ -20,7 +20,7 @@ void OBB::init(sf::Vector2f position, sf::Vector2f size, float rotation)
     this->OrginalPosition = position;
     this->rotation = rotation;
     this->size = size;
-    this->DEBUGSHAPE.setOrigin(size.x/2, size.y/2);
+    this->DEBUGSHAPE.setOrigin(0.f, size.y / 2);// size.x / 2, size.y / 2);
 }
 
 void OBB::move(sf::Vector2f dir)
@@ -45,10 +45,11 @@ void OBB::setRotation(float rot)
 
 bool OBB::pointInside(sf::Vector2f point)
 {
+    sf::Vector2f mousepos = position;
     sf::Vector2f lPos = point - position;//TODO: change this to orginal position
     float nXPos = lPos.x * cos(DToR(rotation)) - lPos.y * sin(DToR(rotation));
     float nYPos = lPos.x * sin(DToR(rotation)) + lPos.y * cos(DToR(rotation));
-    return abs(nXPos) < size.x/2 && abs(nYPos) < size.y/2;
+    return abs(nXPos - size.x / 2) < size.x/2  && abs(nYPos) < size.y/2;
 }
 
 void OBB::debugPoint(const Particle& tester, Particle& changer)

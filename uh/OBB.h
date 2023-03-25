@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Particle.h"//DEBUG
+#include <iostream>
 
 class OBB : public sf::Drawable{
 public:
