@@ -43,8 +43,8 @@ void OBB::setRotation(float rot)
 bool OBB::pointInside(sf::Vector2f point)
 {
     sf::Vector2f lPos = point - position;//TODO: change this to orginal position
-    float nXPos = lPos.x * cos(DToR(rotation)) - lPos.y * sin(DToR(rotation));
-    float nYPos = lPos.x * sin(DToR(rotation)) + lPos.y * cos(DToR(rotation));
+    float nXPos = lPos.x * cos(rotation) - lPos.y * sin(rotation);
+    float nYPos = lPos.x * sin(rotation) + lPos.y * cos(rotation);
     return abs(nXPos - size.x / 2) < size.x/2  && abs(nYPos) < size.y/2;
 }
 

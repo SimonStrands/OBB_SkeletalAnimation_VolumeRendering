@@ -17,7 +17,6 @@ public:
 	
 	//DEBUG
 	void setColor(sf::Color color);
-	void debugPoint(const Particle& tester, Particle& changer);
 	void updateDebug();
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 private:

@@ -21,10 +21,10 @@ Game::~Game()
 }
 
 bool Game::Update(float dt)
-{
+{ 
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
-		point.changeOriginalPosition(sf::Vector2f(sf::Mouse::getPosition(win)));
-		//testOBB.setPos(sf::Vector2f(sf::Mouse::getPosition(win)));
+		//point.changeOriginalPosition(sf::Vector2f(sf::Mouse::getPosition(win)));
+		testOBB.setPos(sf::Vector2f(sf::Mouse::getPosition(win)));
 	}
 	for(int i = 0; i < particles.size(); i++){
 		if(testOBB.pointInside(particles[i].getOrginalPosition())){
@@ -64,7 +64,7 @@ void Game::HandleEvents()
 			done = true;
 		}
 		if(event.type == sf::Event::MouseWheelMoved){
-			testOBB.rotate((float)event.mouseWheel.delta);
+			testOBB.rotate((float)event.mouseWheel.delta * 0.1f);
 		}
 	}
 }
