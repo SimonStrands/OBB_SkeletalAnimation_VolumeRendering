@@ -11,7 +11,11 @@ public:
 	bool loadAnimation(Animation anime);
 	void update(float dt);
 	void draw(sf::RenderWindow& window);
+
+	//DEBUG but should change to another later
+	bool checkIfPointIsInSkeleton(Particle particle);
 private:
+	std::map<uint16_t, Bone*> boneMap;
 	Bone m_skeleton;
 	Animation m_anime;
 };

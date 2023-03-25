@@ -83,6 +83,9 @@
     <ClInclude Include="Animation.h">
       <Filter>Header Files\Skeleton</Filter>
     </ClInclude>
+    <ClInclude Include="RadiansAndDegrees.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="text.txt">

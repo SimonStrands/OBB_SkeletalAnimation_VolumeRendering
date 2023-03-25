@@ -1,9 +1,4 @@
 #include "OBB.h"
-#define PI 3.14159265359
-
-static float DToR(float degree){
-    return 2 * PI * (degree/360);
-}
 
 OBB::OBB(sf::Vector2f position, sf::Vector2f size, float rotation)
 {
@@ -11,6 +6,7 @@ OBB::OBB(sf::Vector2f position, sf::Vector2f size, float rotation)
     this->OrginalPosition = position;
     this->rotation = rotation;
     this->size = size;
+    DEBUGSHAPE.setFillColor(sf::Color(255,0,0,100));
     this->DEBUGSHAPE.setOrigin(0.f, size.y / 2);//size.x/2, size.y/2);
 }
 
@@ -21,6 +17,7 @@ void OBB::init(sf::Vector2f position, sf::Vector2f size, float rotation)
     this->rotation = rotation;
     this->size = size;
     this->DEBUGSHAPE.setOrigin(0.f, size.y / 2);// size.x / 2, size.y / 2);
+    DEBUGSHAPE.setFillColor(sf::Color(255,0,0,100));
 }
 
 void OBB::move(sf::Vector2f dir)
@@ -45,32 +42,27 @@ void OBB::setRotation(float rot)
 
 bool OBB::pointInside(sf::Vector2f point)
 {
-    sf::Vector2f mousepos = position;
     sf::Vector2f lPos = point - position;//TODO: change this to orginal position
-    float nXPos = lPos.x * cos(DToR(rotation)) - lPos.y * sin(DToR(rotation));
-    float nYPos = lPos.x * sin(DToR(rotation)) + lPos.y * cos(DToR(rotation));
+    float nXPos = lPos.x * cos(rotation) - lPos.y * sin(rotation);
+    float nYPos = lPos.x * sin(rotation) + lPos.y * cos(rotation);
     return abs(nXPos - size.x / 2) < size.x/2  && abs(nYPos) < size.y/2;
 }
 
-void OBB::debugPoint(const Particle& tester, Particle& changer)
+void OBB::setColor(sf::Color color)
 {
-    sf::Vector2f lPos = tester.getOrginalPosition() - position;
-    float nXPos = lPos.x * cos(DToR(rotation)) - lPos.y * sin(DToR(rotation));
-    float nYPos = lPos.x * sin(DToR(rotation)) + lPos.y * cos(DToR(rotation));
-    changer.changePosition(sf::Vector2f(nXPos, nYPos) + position);
+    DEBUGSHAPE.setFillColor(color);
 }
 
 sf::Vector2f OBB::getPosition() const
 {
-    return this->position;
+    return this->OrginalPosition;
 }
 
 void OBB::updateDebug()
 {
-    DEBUGSHAPE.setFillColor(sf::Color(255,0,0,100));
     DEBUGSHAPE.setPosition(position);
     DEBUGSHAPE.setSize(size);
-    DEBUGSHAPE.setRotation(-rotation);
+    DEBUGSHAPE.setRotation(RToD(-rotation));
 }
 
 void OBB::draw(sf::RenderTarget& target, sf::RenderStates states) const

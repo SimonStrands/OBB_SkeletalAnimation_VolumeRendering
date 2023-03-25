@@ -1,7 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Particle.h"//DEBUG
-#include <iostream>
+#include "RadiansAndDegrees.h"
+#include "Particle.h"
+
 
 class OBB : public sf::Drawable{
 public:
@@ -12,10 +13,10 @@ public:
 	void rotate(float rot);
 	void setRotation(float rot);
 	bool pointInside(sf::Vector2f point);
-
-	//DEBUG
-	void debugPoint(const Particle& tester, Particle& changer);
 	sf::Vector2f getPosition() const;
+	
+	//DEBUG
+	void setColor(sf::Color color);
 	void updateDebug();
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 private:
