@@ -6,13 +6,14 @@ Game::Game():
 	testOBB(sf::Vector2f(50,50), sf::Vector2f(100,20), 0)
 {
 	done = false;
-	for(int i = 0; i < 30; i++){
+	for(int i = 0; i < 500; i++){
 		particles.push_back(Particle(sf::Color(random::getRandomInt(10,255),random::getRandomInt(10,255),random::getRandomInt(10,255)), sf::Vector2f(random::getRandomFloat(0,400) + 200, random::getRandomFloat(0,200) + 200)));
 	}
 	buildTestAnimation();
 	buildTestSkeleton();
 	this->skeleton.loadAnimation(testAnimation);
 	this->skeleton.loadSkeleton(testSkeleton);
+	deltaTimeSpeed = 1;
 }
 
 Game::~Game()
@@ -33,8 +34,9 @@ bool Game::Update(float dt)
 	}
 	testOBB.updateDebug();
 
-	skeleton.update(dt);
-	skeleton.checkIfPointIsInSkeleton(point);
+	skeleton.update(dt * deltaTimeSpeed);
+	skeleton.moveParticles(particles);
+	//skeleton.checkIfPointIsInSkeleton(point);
 
 	return done;
 }
@@ -42,13 +44,12 @@ bool Game::Update(float dt)
 void Game::Render()
 {
 	win.clear();
-
-	for(int i = 0; i < particles.size(); i++){
-		win.draw(particles[i]);
-	}
 	skeleton.draw(win);
 	win.draw(testOBB);
 	win.draw(point);
+	for(int i = 0; i < particles.size(); i++){
+		win.draw(particles[i]);
+	}
 
 	win.display();
 }
@@ -65,6 +66,10 @@ void Game::HandleEvents()
 		}
 		if(event.type == sf::Event::MouseWheelMoved){
 			testOBB.rotate((float)event.mouseWheel.delta * 0.1f);
+			deltaTimeSpeed += ((float)event.mouseWheel.delta * 0.1f);
+			if(deltaTimeSpeed < 0){
+				deltaTimeSpeed = 0;
+			}
 		}
 	}
 }

@@ -30,11 +30,20 @@ void OBBSkeleton::update(float dt)
     a.position = boneMap[0]->thisBone.getPosition();
     a.rotation = boneMap[0]->thisBone.getRotation();
     m_anime.animateBones(0, boneMap, a);
+    
 }
 
 void OBBSkeleton::draw(sf::RenderWindow& window)
 {
     m_skeleton.draw(window);
+}
+
+void OBBSkeleton::moveParticles(std::vector<Particle>& particles)
+{
+    for(size_t i = 0; i < particles.size(); i++){
+        particles[i].reset();
+    }
+    m_anime.moveParticle(boneMap, particles);
 }
 
 bool OBBSkeleton::checkIfPointIsInSkeleton(Particle particle)

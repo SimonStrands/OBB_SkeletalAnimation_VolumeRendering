@@ -65,5 +65,18 @@ void Animation::animateBones(uint16_t boneID, std::map<uint16_t, Bone*>& boneMap
 
 void Animation::moveParticle(std::map<uint16_t, Bone*>& boneMap, std::vector<Particle>& particles)
 {
-	
+	for (auto const& [key, val] : boneMap)
+	{
+		for(size_t i = 0; i < particles.size(); i++){
+			if(val->thisBone.pointInsideOrginal(particles[i].getOrginalPosition())){
+
+				sf::Vector2f diff = particles[i].getOrginalPosition() - val->thisBone.getPosition();
+				sf::Vector2f newPos(0,0);
+
+				newPos.x = val->trans.position.x + (diff.x * cos(-val->trans.rotation) - diff.y * sin(-val->trans.rotation));
+				newPos.y = val->trans.position.y + (diff.x * sin(-val->trans.rotation) + diff.y * cos(-val->trans.rotation));
+				particles[i].changePosition(newPos);
+			}
+		}
+	}
 }

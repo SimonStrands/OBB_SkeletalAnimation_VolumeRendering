@@ -17,6 +17,7 @@ private:
 	OBBSkeleton skeleton;
 	Particle point;
 	OBB testOBB;
+	float deltaTimeSpeed;
 public:
 	Game();
 	virtual ~Game();
