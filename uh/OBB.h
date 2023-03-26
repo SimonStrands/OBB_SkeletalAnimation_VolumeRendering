@@ -13,17 +13,22 @@ public:
 	void rotate(float rot);
 	void setRotation(float rot);
 	bool pointInside(sf::Vector2f point);
+	bool pointInsideOrginal(sf::Vector2f point);
+
 	sf::Vector2f getPosition() const;
+	float getOrginalRotation() const;
+	float getRotation() const;
 	
 	//DEBUG
 	void setColor(sf::Color color);
 	void updateDebug();
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 private:
-	float rotation;//check if this is in degrees or radians
-	sf::Vector2f position;
-	sf::Vector2f OrginalPosition;
-	sf::Vector2f size;//X,Y
+	float m_rotation;//check if this is in degrees or radians
+	float m_orginalRotation;
+	sf::Vector2f m_position;
+	sf::Vector2f m_orginalPosition;
+	sf::Vector2f m_size;//X,Y
 	sf::RectangleShape DEBUGSHAPE;
 	
 };

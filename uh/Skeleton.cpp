@@ -25,16 +25,11 @@ void OBBSkeleton::update(float dt)
 {
     m_anime.updateAnimation(dt);
 
-    //update animation of obb here
-    //Maybe can do a normal for loop here based on animation nrOfBones
-    std::map<uint16_t, Bone*>::iterator it;
-    for (it = boneMap.begin(); it != boneMap.end(); it++)
-    {
-        //very badly made but works for now (now goes trought every parent for every child (O^2))
-        Transformation temp = m_anime.getTransformationInterpolation(it->first, boneMap);
-        boneMap[it->first]->thisBone.setPos(temp.position);
-        boneMap[it->first]->thisBone.setRotation(temp.rotation);
-    }
+
+    Transformation a;
+    a.position = boneMap[0]->thisBone.getPosition();
+    a.rotation = boneMap[0]->thisBone.getRotation();
+    m_anime.animateBones(0, boneMap, a);
 }
 
 void OBBSkeleton::draw(sf::RenderWindow& window)

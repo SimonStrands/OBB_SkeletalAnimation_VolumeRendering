@@ -1,18 +1,7 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+#include "Transformation.h"
 #include <iostream>
 #include "Bone.h"
-
-struct Transformation{
-	sf::Vector2f position;
-	float rotation;
-	//scale not needed;
-
-	Transformation():
-		position(0, 0),
-		rotation(0)
-	{}
-};
 
 class Animation{
 public:
@@ -28,8 +17,8 @@ public:
 	bool loadAnimation(int nrOfBones, std::vector<float> times, std::vector<std::map<uint16_t, float>> transformations);
 		
 	void updateAnimation(float dt);
-	Transformation getTransformationInterpolation(uint16_t boneID, std::map<uint16_t, Bone*>& boneMap);
-
+	void animateBones(uint16_t boneID, std::map<uint16_t, Bone*>& boneMap, Transformation parentTransform);
+	sf::Vector2f moveParticle(uint16_t boneID, std::map<uint16_t, Bone*>& boneMap, sf::Vector2f particlePosition);
 private:
-	Transformation getpositionDownLine(uint16_t boneID, std::map<uint16_t, Bone*>& boneMap);//const?
+	
 };

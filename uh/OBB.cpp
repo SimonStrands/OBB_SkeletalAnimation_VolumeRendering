@@ -2,50 +2,60 @@
 
 OBB::OBB(sf::Vector2f position, sf::Vector2f size, float rotation)
 {
-    this->position = position;
-    this->OrginalPosition = position;
-    this->rotation = rotation;
-    this->size = size;
+    this->m_position = position;
+    this->m_orginalPosition = position;
+    this->m_rotation = rotation;
+    this->m_orginalRotation = rotation;
+    this->m_size = size;
     DEBUGSHAPE.setFillColor(sf::Color(255,0,0,100));
     this->DEBUGSHAPE.setOrigin(0.f, size.y / 2);//size.x/2, size.y/2);
 }
 
 void OBB::init(sf::Vector2f position, sf::Vector2f size, float rotation)
 {
-    this->position = position;
-    this->OrginalPosition = position;
-    this->rotation = rotation;
-    this->size = size;
+    this->m_position = position;
+    this->m_orginalPosition = position;
+    this->m_orginalRotation = rotation;
+    this->m_rotation = rotation;
+    this->m_size = size;
     this->DEBUGSHAPE.setOrigin(0.f, size.y / 2);// size.x / 2, size.y / 2);
     DEBUGSHAPE.setFillColor(sf::Color(255,0,0,100));
 }
 
 void OBB::move(sf::Vector2f dir)
 {
-    position += dir;
+    m_position += dir;
 }
 
 void OBB::setPos(sf::Vector2f pos)
 {
-    this->position = pos;
+    this->m_position = pos;
 }
 
 void OBB::rotate(float rot)
 {
-    rotation += rot;
+    m_rotation += rot;
 }
 
 void OBB::setRotation(float rot)
 {
-    this->rotation = rot;
+    this->m_rotation = rot;
 }
 
 bool OBB::pointInside(sf::Vector2f point)
 {
-    sf::Vector2f lPos = point - position;//TODO: change this to orginal position
-    float nXPos = lPos.x * cos(rotation) - lPos.y * sin(rotation);
-    float nYPos = lPos.x * sin(rotation) + lPos.y * cos(rotation);
-    return abs(nXPos - size.x / 2) < size.x/2  && abs(nYPos) < size.y/2;
+    sf::Vector2f lPos = point - m_position;
+    float nXPos = lPos.x * cos(m_rotation) - lPos.y * sin(m_rotation);
+    float nYPos = lPos.x * sin(m_rotation) + lPos.y * cos(m_rotation);
+    return abs(nXPos - m_size.x / 2) < m_size.x/2  && abs(nYPos) < m_size.y/2;
+}
+
+bool OBB::pointInsideOrginal(sf::Vector2f point)
+{
+    sf::Vector2f lPos = point - m_orginalPosition;
+    float nXPos = lPos.x * cos(m_orginalRotation) - lPos.y * sin(m_orginalRotation);
+    float nYPos = lPos.x * sin(m_orginalRotation) + lPos.y * cos(m_orginalRotation);
+    return abs(nXPos - m_size.x / 2) < m_size.x/2  && abs(nYPos) < m_size.y/2;
 }
 
 void OBB::setColor(sf::Color color)
@@ -55,14 +65,24 @@ void OBB::setColor(sf::Color color)
 
 sf::Vector2f OBB::getPosition() const
 {
-    return this->OrginalPosition;
+    return this->m_orginalPosition;
+}
+
+float OBB::getOrginalRotation() const
+{
+    return m_orginalRotation;
+}
+
+float OBB::getRotation() const
+{
+    return m_rotation;
 }
 
 void OBB::updateDebug()
 {
-    DEBUGSHAPE.setPosition(position);
-    DEBUGSHAPE.setSize(size);
-    DEBUGSHAPE.setRotation(RToD(-rotation));
+    DEBUGSHAPE.setPosition(m_position);
+    DEBUGSHAPE.setSize(m_size);
+    DEBUGSHAPE.setRotation(RToD(-m_rotation));
 }
 
 void OBB::draw(sf::RenderTarget& target, sf::RenderStates states) const

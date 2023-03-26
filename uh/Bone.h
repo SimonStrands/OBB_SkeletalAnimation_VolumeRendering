@@ -1,5 +1,6 @@
 #pragma once
 #include "OBB.h"
+#include "Transformation.h"
 
 struct Bone{
 	Bone(){
@@ -8,5 +9,7 @@ struct Bone{
 	Bone *parent;
 	uint16_t id;//maybe uint8?
 	std::vector<Bone> children;
+	Transformation trans;
+
 	void draw(sf::RenderWindow& window);
 };

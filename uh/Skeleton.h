@@ -11,6 +11,7 @@ public:
 	bool loadAnimation(Animation anime);
 	void update(float dt);
 	void draw(sf::RenderWindow& window);
+	void moveParticles(std::vector<Particle> particles);
 
 	//DEBUG but should change to another later
 	bool checkIfPointIsInSkeleton(Particle particle);

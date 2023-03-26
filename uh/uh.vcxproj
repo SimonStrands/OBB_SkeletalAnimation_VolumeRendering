@@ -165,6 +165,7 @@
     <ClInclude Include="RandomGenerator.h" />
     <ClInclude Include="Skeleton.h" />
     <ClInclude Include="TestSkeletonandAnimation.h" />
+    <ClInclude Include="Transformation.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="text.txt" />
