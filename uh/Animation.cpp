@@ -62,3 +62,8 @@ void Animation::animateBones(uint16_t boneID, std::map<uint16_t, Bone*>& boneMap
 		animateBones(boneMap[boneID]->children[i].id, boneMap, trans);
 	}
 }
+
+void Animation::moveParticle(std::map<uint16_t, Bone*>& boneMap, std::vector<Particle>& particles)
+{
+	
+}

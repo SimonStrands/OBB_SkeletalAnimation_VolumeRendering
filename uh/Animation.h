@@ -18,7 +18,7 @@ public:
 		
 	void updateAnimation(float dt);
 	void animateBones(uint16_t boneID, std::map<uint16_t, Bone*>& boneMap, Transformation parentTransform);
-	sf::Vector2f moveParticle(uint16_t boneID, std::map<uint16_t, Bone*>& boneMap, sf::Vector2f particlePosition);
+	void moveParticle(std::map<uint16_t, Bone*>& boneMap, std::vector<Particle>& particles);
 private:
 	
 };
