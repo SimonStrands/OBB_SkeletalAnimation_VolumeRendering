@@ -4,7 +4,8 @@ Particle::Particle(sf::Color color, sf::Vector2f pos)
 {
 	this->m_orginalPosition = pos;
 	m_particle.setFillColor(color);
-	m_particle.setRadius(3);
+	m_particle.setRadius(2);
+	m_particle.setOrigin(2,2);
 	m_particle.setPosition(pos);
 }
 

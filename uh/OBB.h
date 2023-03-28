@@ -30,5 +30,6 @@ private:
 	sf::Vector2f m_orginalPosition;
 	sf::Vector2f m_size;//X,Y
 	sf::RectangleShape DEBUGSHAPE;
+	sf::CircleShape DEBUGSHAPECircle;
 	
 };

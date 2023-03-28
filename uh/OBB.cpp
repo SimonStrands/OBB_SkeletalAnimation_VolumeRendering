@@ -9,6 +9,9 @@ OBB::OBB(sf::Vector2f position, sf::Vector2f size, float rotation)
     this->m_size = size;
     DEBUGSHAPE.setFillColor(sf::Color(255,0,0,100));
     this->DEBUGSHAPE.setOrigin(0.f, size.y / 2);//size.x/2, size.y/2);
+    DEBUGSHAPECircle.setFillColor(sf::Color::White);
+    DEBUGSHAPECircle.setRadius(2.f);
+    DEBUGSHAPECircle.setOrigin(2,2);
 }
 
 void OBB::init(sf::Vector2f position, sf::Vector2f size, float rotation)
@@ -20,6 +23,9 @@ void OBB::init(sf::Vector2f position, sf::Vector2f size, float rotation)
     this->m_size = size;
     this->DEBUGSHAPE.setOrigin(0.f, size.y / 2);// size.x / 2, size.y / 2);
     DEBUGSHAPE.setFillColor(sf::Color(255,0,0,100));
+    DEBUGSHAPECircle.setFillColor(sf::Color::White);
+    DEBUGSHAPECircle.setRadius(2.f);
+    DEBUGSHAPECircle.setOrigin(2,2);
 }
 
 void OBB::move(sf::Vector2f dir)
@@ -81,6 +87,8 @@ float OBB::getRotation() const
 void OBB::updateDebug()
 {
     DEBUGSHAPE.setPosition(m_position);
+    DEBUGSHAPECircle.setPosition(DEBUGSHAPE.getPosition());
+    DEBUGSHAPECircle.setRadius(2.f);
     DEBUGSHAPE.setSize(m_size);
     DEBUGSHAPE.setRotation(RToD(-m_rotation));
 }
@@ -88,4 +96,5 @@ void OBB::updateDebug()
 void OBB::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(DEBUGSHAPE);
+    target.draw(DEBUGSHAPECircle);
 }

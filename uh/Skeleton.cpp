@@ -25,7 +25,6 @@ void OBBSkeleton::update(float dt)
 {
     m_anime.updateAnimation(dt);
 
-
     Transformation a;
     a.position = boneMap[0]->thisBone.getPosition();
     a.rotation = boneMap[0]->thisBone.getRotation();

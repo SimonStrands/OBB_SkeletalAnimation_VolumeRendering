@@ -3,7 +3,7 @@
 Animation::Animation()
 {
 	currentTime = 0.f;
-	currentTimeIndex = 0;
+	currentTimeIndex = 1;
 	nrOfBones = 0;
 	procent = 0;
 }
@@ -22,7 +22,7 @@ bool Animation::loadAnimation(int nrOfBones, std::vector<float> times, std::vect
 
 void Animation::updateAnimation(float dt)
 {
-	if(Times.size() < 0){return;}
+	if(Times.size() < 1){return;}
 
 	currentTime += dt;
 	if(currentTime > Times[currentTimeIndex]){
@@ -37,6 +37,8 @@ void Animation::updateAnimation(float dt)
 
 void Animation::animateBones(uint16_t boneID, std::map<uint16_t, Bone*>& boneMap, Transformation parentTransform)
 {
+	if(transformations.size() < 2){return;}
+
 	Transformation trans;
 	if(boneMap[boneID]->parent == nullptr){
 		//root bone
