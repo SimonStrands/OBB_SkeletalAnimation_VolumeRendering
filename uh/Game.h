@@ -18,6 +18,7 @@ private:
 	Particle point;
 	OBB testOBB;
 	float deltaTimeSpeed;
+	bool renderSkeleton;
 public:
 	Game();
 	virtual ~Game();

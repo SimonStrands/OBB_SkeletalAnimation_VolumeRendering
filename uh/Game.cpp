@@ -14,6 +14,7 @@ Game::Game():
 	this->skeleton.loadAnimation(testAnimation);
 	this->skeleton.loadSkeleton(testSkeleton);
 	deltaTimeSpeed = 0;
+	renderSkeleton = false;
 }
 
 Game::~Game()
@@ -23,11 +24,7 @@ Game::~Game()
 
 bool Game::Update(float dt)
 { 
-	//if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
-	//	//point.changeOriginalPosition(sf::Vector2f(sf::Mouse::getPosition(win)));
-	//	//testOBB.setPos(sf::Vector2f(sf::Mouse::getPosition(win)));
-	//	particles.push_back(Particle(sf::Color(random::getRandomInt(10,255),random::getRandomInt(10,255),random::getRandomInt(10,255)),sf::Vector2f(sf::Mouse::getPosition(win))));
-	//}
+
 	for(int i = 0; i < particles.size(); i++){
 		if(testOBB.pointInside(particles[i].getOrginalPosition())){
 			std::cout << "Particle: " << i << ", is inside box" << std::endl;  
@@ -44,7 +41,10 @@ bool Game::Update(float dt)
 void Game::Render()
 {
 	win.clear();
-	skeleton.draw(win);
+	if(renderSkeleton){
+		skeleton.draw(win);
+	}
+	
 	//win.draw(testOBB);
 	//win.draw(point);
 	for(int i = 0; i < particles.size(); i++){
@@ -70,6 +70,9 @@ void Game::HandleEvents()
 			if(deltaTimeSpeed < 0){
 				deltaTimeSpeed = 0;
 			}
+		}
+		if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::N){
+			renderSkeleton = !renderSkeleton;
 		}
 		//if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left){
 		//	particles.push_back(Particle(sf::Color(random::getRandomInt(10,255),random::getRandomInt(10,255),random::getRandomInt(10,255)),sf::Vector2f(sf::Mouse::getPosition(win))));
