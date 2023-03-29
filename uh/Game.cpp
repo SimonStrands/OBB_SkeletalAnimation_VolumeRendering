@@ -6,8 +6,8 @@ Game::Game():
 	testOBB(sf::Vector2f(50,50), sf::Vector2f(100,20), 0)
 {
 	done = false;
-	for(int i = 0; i < 500; i++){
-		particles.push_back(Particle(sf::Color(random::getRandomInt(10,255),random::getRandomInt(10,255),random::getRandomInt(10,255)), sf::Vector2f(random::getRandomFloat(0,400) + 200, random::getRandomFloat(0,200) + 200)));
+	for(int i = 0; i < 1000; i++){
+		particles.push_back(Particle(sf::Color(random::getRandomInt(10,255),random::getRandomInt(10,255),random::getRandomInt(10,255)), sf::Vector2f(random::getRandomFloat(0,250) + 200, random::getRandomFloat(0,100) + 250)));
 	}
 	buildTestAnimation();
 	buildTestSkeleton();

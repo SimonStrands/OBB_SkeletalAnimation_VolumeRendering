@@ -39,9 +39,9 @@ void OBBSkeleton::draw(sf::RenderWindow& window)
 
 void OBBSkeleton::moveParticles(std::vector<Particle>& particles)
 {
-    for(size_t i = 0; i < particles.size(); i++){
-        particles[i].reset();
-    }
+    //for(size_t i = 0; i < particles.size(); i++){
+    //    particles[i].reset();
+    //}
     m_anime.moveParticle(boneMap, particles);
 }
 

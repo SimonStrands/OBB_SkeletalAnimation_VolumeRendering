@@ -19,6 +19,11 @@ void Particle::changePosition(sf::Vector2f pos)
 	m_particle.setPosition(pos);
 }
 
+void Particle::move(sf::Vector2f dir)
+{
+	m_particle.move(dir);
+}
+
 void Particle::reset()
 {
 	m_particle.setPosition(getOrginalPosition());
