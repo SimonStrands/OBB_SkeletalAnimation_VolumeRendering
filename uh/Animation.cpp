@@ -35,16 +35,16 @@ void Animation::updateAnimation(float dt)
 	procent = (currentTime - Times[currentTimeIndex - 1])/(Times[currentTimeIndex] - Times[currentTimeIndex - 1]);//should be around 0 - 1
 }
 
-void Animation::animateBones(uint16_t boneID, std::map<uint16_t, Bone*>& boneMap, Transformation parentTransform)
+void Animation::updateTransformations(uint16_t boneID, std::map<uint16_t, Bone*>& boneMap, Transformation parentTransform)
 {
 	if(transformations.size() < 2){return;}
 
 	Transformation trans;
+	trans.lastRotation = boneMap[boneID]->trans.rotation;
 	if(boneMap[boneID]->parent == nullptr){
 		//root bone
-		 boneMap[boneID]->thisBone.setRotation(transformations[currentTimeIndex - 1][boneID] - ((transformations[currentTimeIndex - 1][boneID] - transformations[currentTimeIndex][boneID]) * procent));
 		 trans.position = parentTransform.position;
-		 trans.rotation = boneMap[boneID]->thisBone.getRotation();
+		 trans.rotation = transformations[currentTimeIndex - 1][boneID] - ((transformations[currentTimeIndex - 1][boneID] - transformations[currentTimeIndex][boneID]) * procent);
 	}
 	else{
 		sf::Vector2f diff = boneMap[boneID]->thisBone.getPosition() - boneMap[boneID]->parent->thisBone.getPosition();
@@ -56,12 +56,19 @@ void Animation::animateBones(uint16_t boneID, std::map<uint16_t, Bone*>& boneMap
 	}
 	
 	//this can be changed later
-	boneMap[boneID]->thisBone.setRotation(trans.rotation);
-	boneMap[boneID]->thisBone.setPos(trans.position);
 	boneMap[boneID]->trans = trans;
 	
 	for(int i = 0; i < boneMap[boneID]->children.size(); i++){
-		animateBones(boneMap[boneID]->children[i].id, boneMap, trans);
+		updateTransformations(boneMap[boneID]->children[i].id, boneMap, trans);
+	}
+}
+
+void Animation::updateBoneAnimation(uint16_t boneID, std::map<uint16_t, Bone*>& boneMap)
+{
+	boneMap[boneID]->thisBone.setPos(boneMap[boneID]->trans.position);
+	boneMap[boneID]->thisBone.setRotation(boneMap[boneID]->trans.rotation);
+	for(int i = 0; i < boneMap[boneID]->children.size(); i++){
+		updateBoneAnimation(boneMap[boneID]->children[i].id, boneMap);
 	}
 }
 
@@ -70,13 +77,15 @@ void Animation::moveParticle(std::map<uint16_t, Bone*>& boneMap, std::vector<Par
 	for (auto const& [key, val] : boneMap)
 	{
 		for(size_t i = 0; i < particles.size(); i++){
-			if(val->thisBone.pointInsideOrginal(particles[i].getOrginalPosition())){
+			if(val->thisBone.pointInside(particles[i].getPosition())){
 
-				sf::Vector2f diff = particles[i].getOrginalPosition() - val->thisBone.getPosition();
+				sf::Vector2f diff = particles[i].getPosition() - val->trans.position;
+				//sf::Vector2f diff = particles[i].getPosition() - boneMap[0]->thisBone.getPosition();
 				sf::Vector2f newPos(0,0);
+				float rotation = -(val->trans.rotation - val->trans.lastRotation);
 
-				newPos.x = val->trans.position.x + (diff.x * cos(-val->trans.rotation) - diff.y * sin(-val->trans.rotation));
-				newPos.y = val->trans.position.y + (diff.x * sin(-val->trans.rotation) + diff.y * cos(-val->trans.rotation));
+				newPos.x = val->trans.position.x + (diff.x * cos(rotation) - diff.y * sin(rotation));
+				newPos.y = val->trans.position.y + (diff.x * sin(rotation) + diff.y * cos(rotation));
 				particles[i].changePosition(newPos);
 			}
 		}

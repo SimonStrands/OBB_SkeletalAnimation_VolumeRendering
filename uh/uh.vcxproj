@@ -154,6 +154,7 @@
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="Skeleton.cpp" />
     <ClCompile Include="Start.cpp" />
+    <ClCompile Include="Transformation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />

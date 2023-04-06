@@ -17,7 +17,8 @@ public:
 	bool loadAnimation(int nrOfBones, std::vector<float> times, std::vector<std::map<uint16_t, float>> transformations);
 		
 	void updateAnimation(float dt);
-	void animateBones(uint16_t boneID, std::map<uint16_t, Bone*>& boneMap, Transformation parentTransform);
+	void updateTransformations(uint16_t boneID, std::map<uint16_t, Bone*>& boneMap, Transformation parentTransform);
+	void updateBoneAnimation(uint16_t boneID, std::map<uint16_t, Bone*>& boneMap);
 	void moveParticle(std::map<uint16_t, Bone*>& boneMap, std::vector<Particle>& particles);
 private:
 	

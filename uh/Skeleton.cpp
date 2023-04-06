@@ -21,15 +21,22 @@ bool OBBSkeleton::loadAnimation(Animation anime)
     return true;
 }
 
-void OBBSkeleton::update(float dt)
+void OBBSkeleton::update(float dt, std::vector<Particle>& particles)
 {
+    //updates the animation such as index, keyframe aso
     m_anime.updateAnimation(dt);
-
+    
+    //update the transform in the bone
     Transformation a;
     a.position = boneMap[0]->thisBone.getPosition();
     a.rotation = boneMap[0]->thisBone.getRotation();
-    m_anime.animateBones(0, boneMap, a);
+    m_anime.updateTransformations(0, boneMap, a);
     
+    
+    moveParticles(particles);
+    
+    //actually updates the bones position and rotation
+    m_anime.updateBoneAnimation(0, boneMap);
 }
 
 void OBBSkeleton::draw(sf::RenderWindow& window)
@@ -39,9 +46,9 @@ void OBBSkeleton::draw(sf::RenderWindow& window)
 
 void OBBSkeleton::moveParticles(std::vector<Particle>& particles)
 {
-    for(size_t i = 0; i < particles.size(); i++){
-        particles[i].reset();
-    }
+    //for(size_t i = 0; i < particles.size(); i++){
+    //    particles[i].reset();
+    //}
     m_anime.moveParticle(boneMap, particles);
 }
 

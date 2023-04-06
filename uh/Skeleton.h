@@ -9,7 +9,7 @@ class OBBSkeleton{
 public:
 	bool loadSkeleton(Bone skeleton);
 	bool loadAnimation(Animation anime);
-	void update(float dt);
+	void update(float dt, std::vector<Particle>& particles);
 	void draw(sf::RenderWindow& window);
 	void moveParticles(std::vector<Particle>& particles);
 

@@ -17,18 +17,18 @@ static void buildTestSkeleton(){
 	testSkeleton.children[0].parent = &testSkeleton;
 	testSkeleton.children[0].thisBone.init(sf::Vector2f(60 + xOffset,0 + yOffset), sf::Vector2f(70,50));
 	testSkeleton.children[0].thisBone.setColor(sf::Color(0, 255, 0, 200));
-	testSkeleton.children[0].children.push_back(Bone());
-
-	testSkeleton.children[0].children[0].id = 2;
-	testSkeleton.children[0].children[0].parent = &testSkeleton.children[0];
-	testSkeleton.children[0].children[0].thisBone.init(sf::Vector2f(120 + xOffset,0 + yOffset), sf::Vector2f(70,50));
-	testSkeleton.children[0].thisBone.setColor(sf::Color(0, 0, 255, 200));
-	testSkeleton.children[0].children[0].children.push_back(Bone());
-
-	testSkeleton.children[0].children[0].children[0].id = 3;
-	testSkeleton.children[0].children[0].children[0].parent = &testSkeleton.children[0].children[0];
-	testSkeleton.children[0].children[0].children[0].thisBone.init(sf::Vector2f(180 + xOffset,0 + yOffset), sf::Vector2f(70,50));
-	testSkeleton.children[0].children[0].children[0].thisBone.setColor(sf::Color(0, 255, 255, 200));
+	//testSkeleton.children[0].children.push_back(Bone());
+	//
+	//testSkeleton.children[0].children[0].id = 2;
+	//testSkeleton.children[0].children[0].parent = &testSkeleton.children[0];
+	//testSkeleton.children[0].children[0].thisBone.init(sf::Vector2f(120 + xOffset,0 + yOffset), sf::Vector2f(70,50));
+	//testSkeleton.children[0].thisBone.setColor(sf::Color(0, 0, 255, 200));
+	//testSkeleton.children[0].children[0].children.push_back(Bone());
+	//
+	//testSkeleton.children[0].children[0].children[0].id = 3;
+	//testSkeleton.children[0].children[0].children[0].parent = &testSkeleton.children[0].children[0];
+	//testSkeleton.children[0].children[0].children[0].thisBone.init(sf::Vector2f(180 + xOffset,0 + yOffset), sf::Vector2f(70,50));
+	//testSkeleton.children[0].children[0].children[0].thisBone.setColor(sf::Color(0, 255, 255, 200));
 
 }
 
@@ -46,38 +46,38 @@ static void buildTestAnimation()
 
 	temp[0] = 0;
 	temp[1] = 0;
-	temp[2] = 0;
-	temp[3] = 0;
+	//temp[2] = 0;
+	//temp[3] = 0;
 	testAnimation.transformations.push_back(temp);
 
 	temp[0] = DToR(90);
 	temp[1] = 0;
-	temp[2] = 0;
-	temp[3] = 0;
+	//temp[2] = 0;
+	//temp[3] = 0;
 	testAnimation.transformations.push_back(temp);
 
 	temp[0] = 0;
 	temp[1] = 0;
-	temp[2] = 0;
-	temp[3] = 0;
+	//temp[2] = 0;
+	//temp[3] = 0;
 	testAnimation.transformations.push_back(temp);
 
 	temp[0] = DToR(35);
 	temp[1] = DToR(35);
-	temp[2] = DToR(35);
-	temp[3] = DToR(35);
+	//temp[2] = DToR(35);
+	//temp[3] = DToR(35);
 	testAnimation.transformations.push_back(temp);
 
 	temp[0] = DToR(-35);
 	temp[1] = DToR(-35);
-	temp[2] = DToR(-35);
-	temp[3] = DToR(-35);
+	//temp[2] = DToR(-35);
+	//temp[3] = DToR(-35);
 	testAnimation.transformations.push_back(temp);
 
 	temp[0] = 0;
 	temp[1] = 0;
-	temp[2] = 0;
-	temp[3] = 0;
+	//temp[2] = 0;
+	//temp[3] = 0;
 	testAnimation.transformations.push_back(temp);
 }
 

@@ -23,8 +23,10 @@ public:
 	void setColor(sf::Color color);
 	void updateDebug();
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	float otherRotation;
 private:
 	float m_rotation;//check if this is in degrees or radians
+	
 	float m_orginalRotation;
 	sf::Vector2f m_position;
 	sf::Vector2f m_orginalPosition;

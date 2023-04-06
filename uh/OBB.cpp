@@ -40,11 +40,13 @@ void OBB::setPos(sf::Vector2f pos)
 
 void OBB::rotate(float rot)
 {
+    otherRotation = m_rotation;
     m_rotation += rot;
 }
 
 void OBB::setRotation(float rot)
 {
+    otherRotation = m_rotation;
     this->m_rotation = rot;
 }
 

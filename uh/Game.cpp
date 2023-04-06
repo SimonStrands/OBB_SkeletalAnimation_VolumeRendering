@@ -13,7 +13,7 @@ Game::Game():
 	buildTestSkeleton();
 	this->skeleton.loadAnimation(testAnimation);
 	this->skeleton.loadSkeleton(testSkeleton);
-	deltaTimeSpeed = 0;
+	deltaTimeSpeed = 1;
 }
 
 Game::~Game()
@@ -23,20 +23,9 @@ Game::~Game()
 
 bool Game::Update(float dt)
 { 
-	//if(sf::Mouse::isButtonPressed(sf::Mouse::Right)){
-	//	//point.changeOriginalPosition(sf::Vector2f(sf::Mouse::getPosition(win)));
-	//	//testOBB.setPos(sf::Vector2f(sf::Mouse::getPosition(win)));
-	//	particles.push_back(Particle(sf::Color(random::getRandomInt(10,255),random::getRandomInt(10,255),random::getRandomInt(10,255)),sf::Vector2f(sf::Mouse::getPosition(win))));
-	//}
-	for(int i = 0; i < particles.size(); i++){
-		if(testOBB.pointInside(particles[i].getOrginalPosition())){
-			std::cout << "Particle: " << i << ", is inside box" << std::endl;  
-		}
-	}
 	testOBB.updateDebug();
 
-	skeleton.update(dt * deltaTimeSpeed);
-	skeleton.moveParticles(particles);
+	skeleton.update(dt * deltaTimeSpeed, particles);
 
 	return done;
 }

@@ -4,6 +4,7 @@
 struct Transformation{
 	sf::Vector2f position;
 	float rotation;
+	float lastRotation;
 	//scale not needed;
 
 	Transformation():
